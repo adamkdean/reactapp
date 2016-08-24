@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    backgroundColor: '#eeeeee'
+    backgroundColor: '#eeeeee',
+    paddingTop: 8,
   },
   row: {
     justifyContent: 'center',
