@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { AppRegistry, Navigator, Text, TouchableHighlight, View } from 'react-native'
+import { AppRegistry } from 'react-native'
+
+import CameraRollExample from './examples/CameraRollExample'
 
 class ReactApp extends Component {
   render() {
-    return (
-      <Text>Test</Text>
-    )
+    return <CameraRollExample />
   }
 }
 
