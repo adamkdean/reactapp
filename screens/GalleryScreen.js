@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { CameraRoll, Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import CameraScreen from './CameraScreen'
+import LayoutScreen from './LayoutScreen'
 import GridView from '../components/GridView'
 
 export default class GalleryScreen extends Component {
@@ -33,6 +34,8 @@ export default class GalleryScreen extends Component {
   _bindFunctions() {
     this._refreshCameraRoll = this._refreshCameraRoll.bind(this)
     this._processCameraRoll = this._processCameraRoll.bind(this)
+    this._constructCameraIcon = this._constructCameraIcon.bind(this)
+    this._constructLayoutIcon = this._constructLayoutIcon.bind(this)
     this._logError = this._logError.bind(this)
   }
 
@@ -48,8 +51,14 @@ export default class GalleryScreen extends Component {
     const assets = data.edges
     const images = assets.map(asset => asset.node.image)
 
-    // add the camera icon first
-    images.unshift({
+    images.unshift(this._constructLayoutIcon())
+    images.unshift(this._constructCameraIcon())
+
+    this.setState({ ...this.state, images })
+  }
+
+  _constructCameraIcon() {
+    return {
       data: require('../assets/camera.png'),
       onSelect: () => {
         this.props.navigator.push({
@@ -63,9 +72,22 @@ export default class GalleryScreen extends Component {
           }
         })
       }
-    })
+    }
+  }
 
-    this.setState({ ...this.state, images })
+  _constructLayoutIcon() {
+    return {
+      data: require('../assets/layout.png'),
+      onSelect: () => {
+        this.props.navigator.push({
+          component: LayoutScreen,
+          type: 'Modal',
+          passProps: {
+            // TODO
+          }
+        })
+      }
+    }
   }
 
   _logError(error) {
