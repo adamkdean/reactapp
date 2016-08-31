@@ -1,18 +1,9 @@
 import React, { Component } from 'react'
-import {
-  AppRegistry,
-  ListView,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View
-} from 'react-native'
+import { ListView, Image, StyleSheet, TouchableHighlight, View } from 'react-native'
 
 export default class GridView extends Component {
   constructor(props) {
     super(props)
-    console.log('constructor', props)
     this._setInitialState()
     this._bindFunctions()
   }
@@ -27,10 +18,10 @@ export default class GridView extends Component {
   render() {
     return (
       <ListView
-        contentContainerStyle={styles.list}
-        dataSource={this.state.dataSource}
-        renderRow={this._renderRow}
-        initialListSize={30}
+        contentContainerStyle={ styles.list }
+        dataSource={ this.state.dataSource }
+        renderRow={ this._renderRow }
+        initialListSize={ 30 }
       />
     )
   }
@@ -52,17 +43,13 @@ export default class GridView extends Component {
       ? { uri: rowData.uri }
       : rowData.data
 
-    console.log('rowData', rowData)
-    console.log('imgSource', imgSource)
-    console.log()
-
     return (
       <TouchableHighlight
-        style={styles.row}
-        onPress={() => this._selectItem(rowData)}
+        style={ styles.row }
+        onPress={ () => this._selectItem(rowData) }
         underlayColor='rgba(0,0,0,0)'>
         <View>
-          <Image style={styles.thumb} source={imgSource} />
+          <Image style={ styles.thumb } source={ imgSource } />
         </View>
       </TouchableHighlight>
     )
@@ -72,8 +59,7 @@ export default class GridView extends Component {
     if (typeof item.onSelect === 'function') {
       item.onSelect()
     } else {
-      // do something with item
-      console.log('item selected', item)
+      // do nothing with item?
     }
   }
 }
